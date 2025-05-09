@@ -3,23 +3,25 @@ package main.java.menus;
 import main.java.estudiantes.*;
 import main.java.equipos.*;
 import main.java.persistencia.*;
-import main.java.validaciones.*;
 import javax.swing.*;
 import java.util.List;
 
-public class MenuPrincipal {
-    private final List<EstudianteIngenieria> ingenieros;
-    private final List<EstudianteDiseno> disenadores;
-    private final List<ComputadorPortatil> portatiles;
-    private final List<TabletaGrafica> tabletas;
+    public class MenuPrincipal {
+        private final List<EstudianteIngenieria> ingenieros;
+        private final List<EstudianteDiseno> disenadores;
+        private final List<ComputadorPortatil> portatiles;
+        private final List<TabletaGrafica> tabletas;
+        private final GestorEquipos gestorEquipos;
 
-    public MenuPrincipal(List<EstudianteIngenieria> ingenieros, List<EstudianteDiseno> disenadores,
-                         List<ComputadorPortatil> portatiles, List<TabletaGrafica> tabletas) {
-        this.ingenieros = ingenieros;
-        this.disenadores = disenadores;
-        this.portatiles = portatiles;
-        this.tabletas = tabletas;
-    }
+        public MenuPrincipal(List<EstudianteIngenieria> ingenieros, List<EstudianteDiseno> disenadores,
+                             List<ComputadorPortatil> portatiles, List<TabletaGrafica> tabletas) {
+            this.ingenieros = ingenieros;
+            this.disenadores = disenadores;
+            this.portatiles = portatiles;
+            this.tabletas = tabletas;
+            this.gestorEquipos = new GestorEquipos(portatiles, tabletas);
+        }
+
 
     public void mostrar() {
         boolean salir = false;
@@ -32,10 +34,10 @@ public class MenuPrincipal {
 
             switch (opcion) {
                 case "1":
-                    new MenuIngenieria(ingenieros).mostrar();
+                    new MenuIngenieria(ingenieros, disenadores, gestorEquipos).mostrar();
                     break;
                 case "2":
-                    new MenuDiseno(disenadores).mostrar();
+                    new MenuDiseno(disenadores, ingenieros,gestorEquipos).mostrar();
                     break;
                 case "3":
                     new MenuPortatiles(portatiles).mostrar();
