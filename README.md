@@ -31,6 +31,7 @@ src/
 │   │   │   └── Validaciones.java
 │   │   ├── persistencia/
 │   │   │   ├── CargadorDatos.java
+│   │   │   ├── Gestor Equipos.java
 │   │   │   └── Persistencia.java
 │   │   ├── menus/
 │   │   │   ├── MenuPrincipal.java
