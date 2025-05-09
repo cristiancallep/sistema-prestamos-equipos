@@ -1,15 +1,21 @@
 package main.java.menus;
 
+import main.java.estudiantes.EstudianteDiseno;
 import main.java.estudiantes.EstudianteIngenieria;
+import main.java.persistencia.GestorEquipos;
 import main.java.validaciones.Validaciones;
 import javax.swing.*;
 import java.util.List;
 
 public class MenuIngenieria {
     private final List<EstudianteIngenieria> estudiantes;
+    private final List<EstudianteDiseno> disenadores;
+    private final GestorEquipos gestorEquipos;
 
-    public MenuIngenieria(List<EstudianteIngenieria> estudiantes) {
+    public MenuIngenieria(List<EstudianteIngenieria> estudiantes, List<EstudianteDiseno> disenadores,GestorEquipos gestorEquipos) {
         this.estudiantes = estudiantes;
+        this.gestorEquipos = gestorEquipos;
+        this.disenadores = disenadores;
     }
 
     public void mostrar() {
@@ -83,8 +89,18 @@ public class MenuIngenieria {
         String serial = Validaciones.validarSerial("Ingrese el serial del equipo:");
         if (serial == null) return;
 
-        if (estudiantes.stream().anyMatch(e -> e.getSerialEquipo().equals(serial))) {
-            JOptionPane.showMessageDialog(null, "Ya hay un equipo con ese serial registrado", "Error", JOptionPane.ERROR_MESSAGE);
+        // Validar que no esté ya prestado
+        if (estudiantes.stream().anyMatch(e -> e.getSerialEquipo().equals(serial)) ||
+                disenadores.stream().anyMatch(d -> d.getSerialEquipo().equals(serial))) {
+            JOptionPane.showMessageDialog(null, "El equipo ya está prestado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que exista y sea portátil (para ingeniería)
+        if (!gestorEquipos.existePortatil(serial)) {
+            JOptionPane.showMessageDialog(null,
+                    "No existe un portátil con ese serial o está asignado a diseño",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
