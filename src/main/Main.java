@@ -9,11 +9,6 @@ public class Main {
         CargadorDatos.DatosSistema datos = CargadorDatos.cargarTodosLosDatos();
 
         // Iniciar la aplicación con los datos cargados
-        new MenuPrincipal(
-                datos.ingenieros(),
-                datos.disenadores(),
-                datos.portatiles(),
-                datos.tabletas()
-        ).mostrar();
+        new MenuPrincipal(datos.ingenieros(), datos.disenadores(), datos.portatiles(), datos.tabletas()).mostrar();
     }
 }

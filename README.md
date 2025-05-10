@@ -2,6 +2,7 @@
 
 ![Java](https://img.shields.io/badge/Java-17%2B-blue)
 ![GitHub last commit](https://img.shields.io/github/last-commit/cristiancallep/sistema-prestamos-equipos)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/cristiancallep/sistema-prestamos-equipos)
 
 Sistema de gestión para préstamos de equipos tecnológicos (computadores portátiles y tabletas gráficas) a estudiantes de ingeniería y diseño.
 
